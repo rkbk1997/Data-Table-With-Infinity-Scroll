@@ -15,4 +15,12 @@ export class ApiService {
   getnextRecords(body){
     return this.http.post(this.url ,body);
   }
+
+  findrecord(id){
+    return this.http.post('http://localhost:8000/getapp',{id});
+  }
+
+  updateappdata(body):any{
+    return this.http.post('http://localhost:8000/updateapp',body)
+  }
 }

@@ -8,6 +8,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSortModule} from '@angular/material/sort';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import {MatSortModule} from '@angular/material/sort';
     NgxSpinnerModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatSortModule
+    MatSortModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
