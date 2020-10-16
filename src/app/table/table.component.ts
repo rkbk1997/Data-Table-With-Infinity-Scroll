@@ -10,16 +10,27 @@ export class TableComponent {
   @Input() tableData: any;
   @Input() notEmptyPost: any;
   @Input() notscrolly: any;
+  @Input() notMorePost: any;
+  @Input() showspinner: any;
   @Output() nextpost = new EventEmitter<boolean>();
-
+  @Output() increment_sort = new EventEmitter<any>();
+  @Output() decrement_sort = new EventEmitter<any>();
+  
   constructor() {}
 
   spinnershow: boolean = true;
 
   onScroll() {
     setTimeout(() => {
-      console.log('Event Emiited====>>>');
       this.nextpost.emit();
     }, 1000);
+  }
+
+  incrementsort(key){
+    this.increment_sort.emit(key);
+  }
+
+  decrementsort(key){
+    this.decrement_sort.emit(key);
   }
 }

@@ -1,0 +1,19 @@
+.search-results{
+  margin-top: 80px !important;
+  margin-left: 30px;
+}
+.search-results table th{
+  /* border: 1px solid black; */
+  white-space: nowrap;
+  width: 150px !important;
+}
+.spinner{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px; 
+}
+.morepost{
+  font-size: 10px;
+  display: flex;
+  justify-content: center;
+}

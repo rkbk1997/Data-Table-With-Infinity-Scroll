@@ -22,18 +22,22 @@ export class AppComponent {
   ];
 
   tableData: any;
+  notMorePost: boolean = false;
+  showspinner: boolean = true;
 
   constructor(private api: ApiService) {}
   shownextpost: boolean;
   notEmptyPost = true;
   notscrolly = true;
   filter = {};
+  sort ={};
   skip = 0;
 
-  filterobject={
-    Category : '',
-    Genres:''
-  }
+  filterobject = {
+    Category: '',
+    Genres: '',
+    App: '',
+  };
 
   ngOnInit() {
     this.loadInitData();
@@ -41,8 +45,12 @@ export class AppComponent {
 
   loadInitData() {
     this.api
-      .getFirstRecords({ skip: this.skip, filter: this.filter })
-      .subscribe((data) => {
+      .getFirstRecords({ skip: this.skip, filter: this.filter,sort:this.sort })
+      .subscribe((data: any) => {
+        if (data.length === 0) {
+          this.notMorePost = true;
+          this.showspinner = false;
+        }
         console.log(data);
         this.tableData = data;
         this.skip = this.skip + 10;
@@ -55,31 +63,53 @@ export class AppComponent {
 
   loadNextTableData() {
     this.api
-      .getnextRecords({ skip: this.skip, filter: this.filter })
+      .getnextRecords({ skip: this.skip, filter: this.filter, sort:this.sort  })
       .subscribe((data: any) => {
         const newPost = data;
+        if (newPost.length === 0) {
+          this.notMorePost = true;
+          this.showspinner = false;
+        }
         this.tableData = this.tableData.concat(newPost);
         this.skip = this.skip + 10;
         this.notscrolly = true;
       });
   }
 
-  applyfilter(a,b){
-    this.filter[a]=b;
+  applyfilter(a, b) {
+    this.filter[a] = b;
     this.skip = 0;
-    this.loadInitData()
-    console.log(this.filter)
-    this.filterobject[a]=b;
-    this.filterobject[a]=b;
+    this.loadInitData();
+    console.log(this.filter);
+    this.filterobject[a] = b;
+    this.filterobject[a] = b;
   }
 
-  clearfilter(){
-    this.filterobject.Category = ""
-    this.filterobject.Genres = ""
-    this.skip = 0
-    this.filter={}
-    this.ngOnInit()
-    
+  clearfilter() {
+    this.filterobject.Category = '';
+    this.filterobject.Genres = '';
+    this.filterobject.App = '';
+    this.notMorePost = false;
+    this.skip = 0;
+    this.filter = {};
+    this.ngOnInit();
+    this.showspinner = true;
   }
-  
+
+  incrementsort(key:any) {
+    this.sort = {}
+    this.sort[key]='ascending';
+    console.log(this.sort)
+    this.skip = 0
+    this.ngOnInit()
+
+  }  
+  decrementsort(key:any) {
+    this.sort = {}
+    this.sort[key]='descending';
+    console.log(this.sort)
+    this.skip = 0
+    this.ngOnInit()
+
+  }  
 }
