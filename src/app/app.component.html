@@ -1,31 +1,32 @@
 <div class="row bg-dark w-100 ml-0 p-3" style="position: fixed;z-index: 999;width: 100%;top: 0;">
-  <div class="col-md-4">
-    <select class="form-control" [value]="filterobject.Category" #cate (change)='applyfilter("Category",cate.value)'>
-      <option value="">Search By Category</option>
-      <option value="ART_AND_DESIGN">ART_AND_DESIGN</option>
-      <option value="AUTO_AND_VEHICLES">AUTO_AND_VEHICLES</option>
-      <option value="FAMILY">FAMILY</option>
-    </select>
+  <div class="col-md-3" *ngFor="let searchItemList of searchItemList">
+    <app-select [searchItemList]='searchItemList' [value]="filterobject[searchItemList.topic]" (getfilter)='applyfilter($event)'></app-select>
   </div>
   <div class="col-md-3">
-    <select class="form-control" [value]="filterobject.Genres" #genres (change)='applyfilter("Genres",genres.value)'>
-      <option value="">Search By Genres</option>
-      <option value="Puzzle">Puzzle</option>
-      <option value="Action">Action</option>
-    </select>
-  </div>
-  <div class="col-md-3">
-    <input type="text" class="form-control mb-2" [value]="filterobject.App" #data
-      (keyup)='applyfilter("App",data.value)' placeholder="Search By App Name">
+    <app-input-text placeholder="Search By App Name" [value]="filterobject.App" (getfilter)='applyfilter($event)'></app-input-text>
   </div>
   <div class="col-md-2">
     <button class="btn btn-warning" (click)="clearfilter()">Clear All Filter</button>
   </div>
 </div>
 <div class="row w-100">
-  <div class="col-md-12">
+  <div class="col-md-12"> 
+
+
+
     <app-table [colHeader]="colHeader" [tableData]="tableData" (nextpost)="loadnext()"
-      (increment_sort)="incrementsort($event)" (decrement_sort)="decrementsort($event)" [notEmptyPost]="notEmptyPost"
-      [notMorePost]="notMorePost" [showspinner]="showspinner"></app-table>
+      (increment_sort)="incrementsort($event)" (decrement_sort)="decrementsort($event)"
+      [notEmptyPost]="notEmptyPost" [notMorePost]="notMorePost" [showspinner]="showspinner"
+      [templateRef]="template"
+      >
+      <ng-template #template>
+        <app-edit></app-edit>
+     </ng-template>
+    </app-table>
+
+
+
+
   </div>
 </div>
+

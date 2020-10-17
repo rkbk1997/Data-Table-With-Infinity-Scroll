@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, TemplateRef } from '@angular/core';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-table',
@@ -15,10 +16,10 @@ export class TableComponent {
   @Output() nextpost = new EventEmitter<boolean>();
   @Output() increment_sort = new EventEmitter<any>();
   @Output() decrement_sort = new EventEmitter<any>();
-  
-  constructor() {}
+  @Input() templateRef: TemplateRef<any>;
+  constructor(private api:ApiService ) {}
 
-  spinnershow: boolean = true;
+  editreacord:any;
 
   onScroll() {
     setTimeout(() => {
@@ -33,4 +34,13 @@ export class TableComponent {
   decrementsort(key){
     this.decrement_sort.emit(key);
   }
+
+  getRowData(id){
+    console.log('id ===',id);
+    this.api.findrecord(id).subscribe(
+      res => this.editreacord = res,
+    )
+
+  }
+
 }

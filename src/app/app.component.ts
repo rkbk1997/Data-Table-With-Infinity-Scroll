@@ -6,10 +6,11 @@ import { ApiService } from './api.service';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
+  
   @ViewChild('cate') cate;
 
   colHeader: any[] = [
-    { field: 'App', header: 'App' },
+    { field: 'App', header: 'App'},
     { field: 'Category', header: 'Catagories' },
     { field: 'Rating', header: 'Rating' },
     { field: 'Reviews', header: 'Reviews' },
@@ -21,11 +22,21 @@ export class AppComponent {
     { field: 'Genres', header: 'Genres' },
   ];
 
+
+  searchItemList: any =[{
+      topic: 'Category',list:['ART_AND_DESIGN','AUTO_AND_VEHICLES','FAMILY']
+    },
+    {
+      topic: 'Genres',list:['Puzzle','Action','Art & Design','Art & Design;Creativity']
+    }
+  ]
+
   tableData: any;
   notMorePost: boolean = false;
   showspinner: boolean = true;
 
   constructor(private api: ApiService) {}
+
   shownextpost: boolean;
   notEmptyPost = true;
   notscrolly = true;
@@ -76,19 +87,19 @@ export class AppComponent {
       });
   }
 
-  applyfilter(a, b) {
-    this.filter[a] = b;
+  applyfilter(a) {
+    console.log('aa===',a)
+    this.filter[a.key] = a.value;
     this.skip = 0;
     this.loadInitData();
     console.log(this.filter);
-    this.filterobject[a] = b;
-    this.filterobject[a] = b;
+    this.filterobject[a.key] = a.value;
   }
 
   clearfilter() {
     this.filterobject.Category = '';
     this.filterobject.Genres = '';
-    this.filterobject.App = '';
+    this.filterobject['App'] = '';
     this.notMorePost = false;
     this.skip = 0;
     this.filter = {};
