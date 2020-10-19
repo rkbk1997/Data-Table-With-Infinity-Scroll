@@ -9,10 +9,21 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSortModule} from '@angular/material/sort';
 import { FormsModule } from '@angular/forms';
+import { TableComponent } from './table/table.component';
+import { SelectComponent } from './select/select.component';
+import { InputTextComponent } from './input-text/input-text.component';
+import { EditComponent } from './edit/edit.component';
+import { DeleteComponent } from './delete/delete.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TableComponent,
+    SelectComponent,
+    InputTextComponent,
+    EditComponent,
+    DeleteComponent,
+    
   ],
   imports: [
     BrowserModule,
