@@ -14,7 +14,6 @@ import { SelectComponent } from './select/select.component';
 import { InputTextComponent } from './input-text/input-text.component';
 import { EditComponent } from './edit/edit.component';
 import { DeleteComponent } from './delete/delete.component';
-import { MasterService } from './master.service';
 import { TableconfigService } from './table/tableconfig.service';
 import { ApiService } from './api.service';
 
@@ -38,7 +37,7 @@ import { ApiService } from './api.service';
     MatSortModule,
     FormsModule
   ],
-  providers: [MasterService,TableconfigService,ApiService],
+  providers: [TableconfigService,ApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

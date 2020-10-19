@@ -1,13 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Injectable } from '@angular/core';
-import { MasterService } from '../master.service';
 @Injectable({
   providedIn: 'root'
 })
 
 export class TableconfigService {
 
-  constructor(private masterservice:MasterService, private http: HttpClient) {
+  constructor(private http: HttpClient) {
     this.http.get('http://localhost:8000/getCate').subscribe(res=>{
       this.searchItemList.push({  topic: 'Category',list:res})
     })
