@@ -17,6 +17,8 @@ export class TableComponent {
   @Output() increment_sort = new EventEmitter<any>();
   @Output() decrement_sort = new EventEmitter<any>();
   @Input() templateRef: TemplateRef<any>;
+  @Input() DeletetemplateRef: TemplateRef<any>;
+
   constructor(private api:ApiService ) {}
 
   editreacord:any;

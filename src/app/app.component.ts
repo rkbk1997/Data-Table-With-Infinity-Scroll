@@ -50,6 +50,8 @@ export class AppComponent {
     App: '',
   };
 
+  textKey = "App"
+
   ngOnInit() {
     this.loadInitData();
   }
@@ -99,7 +101,7 @@ export class AppComponent {
   clearfilter() {
     this.filterobject.Category = '';
     this.filterobject.Genres = '';
-    this.filterobject['App'] = '';
+    this.filterobject.App = '';
     this.notMorePost = false;
     this.skip = 0;
     this.filter = {};

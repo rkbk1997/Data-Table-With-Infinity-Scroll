@@ -13,6 +13,7 @@ import { TableComponent } from './table/table.component';
 import { SelectComponent } from './select/select.component';
 import { InputTextComponent } from './input-text/input-text.component';
 import { EditComponent } from './edit/edit.component';
+import { DeleteComponent } from './delete/delete.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { EditComponent } from './edit/edit.component';
     SelectComponent,
     InputTextComponent,
     EditComponent,
+    DeleteComponent,
     
   ],
   imports: [

@@ -18,7 +18,7 @@ export class InputTextComponent implements OnInit {
 
   findvalue(e){
     let filterobject ={
-      key:this.name,
+      key:'App',
       value:e.target.value
     }
     this.getfilter.emit(filterobject)
