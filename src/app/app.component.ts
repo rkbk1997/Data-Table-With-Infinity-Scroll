@@ -11,23 +11,37 @@ export class AppComponent {
     private api: ApiService,
     private tableService: TableconfigService
   ) {}
+  
   @ViewChild('cate') cate;
+
   colHeader: any[] = this.tableService.colHeader;
+
   searchItemList: any = this.tableService.searchItemList;
+
   tableData: any;
+
   notMorePost: boolean = false;
+
   showspinner: boolean = true;
+  
   shownextpost: boolean;
+  
   notEmptyPost = true;
+  
   notscrolly = true;
+  
   filter = {};
+  
   sort = {};
+  
   skip = 0;
+  
   filterobject = {
     Category: '',
     Genres: '',
     App: '',
   };
+  
   textKey = 'App';
 
   ngOnInit() {

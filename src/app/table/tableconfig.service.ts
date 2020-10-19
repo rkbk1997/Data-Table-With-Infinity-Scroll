@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, Injectable } from '@angular/core';
 import { MasterService } from '../master.service';
 @Injectable({
@@ -6,7 +7,14 @@ import { MasterService } from '../master.service';
 
 export class TableconfigService {
 
-  constructor(private masterservice:MasterService) {}
+  constructor(private masterservice:MasterService, private http: HttpClient) {
+    this.http.get('http://localhost:8000/getCate').subscribe(res=>{
+      this.searchItemList.push({  topic: 'Category',list:res})
+    })
+    this.http.get('http://localhost:8000/getGenres').subscribe(res=>{
+      this.searchItemList.push({  topic: 'Genres',list:res})
+    })
+  }
 
   colHeader: any[] = [
     { field: 'App', header: 'App'},
@@ -21,13 +29,6 @@ export class TableconfigService {
     { field: 'Genres', header: 'Genres' },
   ];
 
-
-  searchItemList: any =[{
-      topic: 'Category',list:['ART_AND_DESIGN','AUTO_AND_VEHICLES','FAMILY']
-    },
-    {
-      topic: 'Genres',list:['Puzzle','Action','Art & Design','Art & Design;Creativity']
-    }
-  ]
+  searchItemList: any =[]
 
 }

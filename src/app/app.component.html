@@ -1,15 +1,22 @@
 <div class="row bg-dark w-100 ml-0 p-3" style="position: fixed;z-index: 999;width: 100%;top: 0;">
   <div class="col-md-3" *ngFor="let searchItemList of searchItemList">
+
     <app-select [searchItemList]='searchItemList' [value]="filterobject[searchItemList.topic]"
       (getfilter)='applyfilter($event)'></app-select>
+
   </div>
   <div class="col-md-3">
+
     <app-input-text placeholder="Search By App Name" [value]="filterobject['App']" (getfilter)='applyfilter($event)'>
     </app-input-text>
+
   </div>
   <div class="col-md-2">
+
     <button class="btn btn-warning" (click)="clearfilter()">Clear All Filter</button>
+    
   </div>
+
 </div>
 <div class="row w-100">
   <div class="col-md-12">
