@@ -1,56 +1,34 @@
 import { Component, ViewChild } from '@angular/core';
 import { ApiService } from './api.service';
+import { TableconfigService } from './table/tableconfig.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  
+  constructor(
+    private api: ApiService,
+    private tableService: TableconfigService
+  ) {}
   @ViewChild('cate') cate;
-
-  colHeader: any[] = [
-    { field: 'App', header: 'App'},
-    { field: 'Category', header: 'Catagories' },
-    { field: 'Rating', header: 'Rating' },
-    { field: 'Reviews', header: 'Reviews' },
-    { field: 'Size', header: 'Size' },
-    { field: 'Installs', header: 'Installs' },
-    { field: 'Type', header: 'Type' },
-    { field: 'Price', header: 'Price' },
-    { field: 'Content Rating', header: 'Content Rating' },
-    { field: 'Genres', header: 'Genres' },
-  ];
-
-
-  searchItemList: any =[{
-      topic: 'Category',list:['ART_AND_DESIGN','AUTO_AND_VEHICLES','FAMILY']
-    },
-    {
-      topic: 'Genres',list:['Puzzle','Action','Art & Design','Art & Design;Creativity']
-    }
-  ]
-
+  colHeader: any[] = this.tableService.colHeader;
+  searchItemList: any = this.tableService.searchItemList;
   tableData: any;
   notMorePost: boolean = false;
   showspinner: boolean = true;
-
-  constructor(private api: ApiService) {}
-
   shownextpost: boolean;
   notEmptyPost = true;
   notscrolly = true;
   filter = {};
-  sort ={};
+  sort = {};
   skip = 0;
-
   filterobject = {
     Category: '',
     Genres: '',
     App: '',
   };
-
-  textKey = "App"
+  textKey = 'App';
 
   ngOnInit() {
     this.loadInitData();
@@ -58,7 +36,11 @@ export class AppComponent {
 
   loadInitData() {
     this.api
-      .getFirstRecords({ skip: this.skip, filter: this.filter,sort:this.sort })
+      .getFirstRecords({
+        skip: this.skip,
+        filter: this.filter,
+        sort: this.sort,
+      })
       .subscribe((data: any) => {
         if (data.length === 0) {
           this.notMorePost = true;
@@ -76,7 +58,7 @@ export class AppComponent {
 
   loadNextTableData() {
     this.api
-      .getnextRecords({ skip: this.skip, filter: this.filter, sort:this.sort  })
+      .getnextRecords({ skip: this.skip, filter: this.filter, sort: this.sort })
       .subscribe((data: any) => {
         const newPost = data;
         if (newPost.length === 0) {
@@ -90,7 +72,7 @@ export class AppComponent {
   }
 
   applyfilter(a) {
-    console.log('aa===',a)
+    console.log('aa===', a);
     this.filter[a.key] = a.value;
     this.skip = 0;
     this.loadInitData();
@@ -109,20 +91,18 @@ export class AppComponent {
     this.showspinner = true;
   }
 
-  incrementsort(key:any) {
-    this.sort = {}
-    this.sort[key]='ascending';
-    console.log(this.sort)
-    this.skip = 0
-    this.ngOnInit()
-
-  }  
-  decrementsort(key:any) {
-    this.sort = {}
-    this.sort[key]='descending';
-    console.log(this.sort)
-    this.skip = 0
-    this.ngOnInit()
-
-  }  
+  incrementsort(key: any) {
+    this.sort = {};
+    this.sort[key] = 'ascending';
+    console.log(this.sort);
+    this.skip = 0;
+    this.ngOnInit();
+  }
+  decrementsort(key: any) {
+    this.sort = {};
+    this.sort[key] = 'descending';
+    console.log(this.sort);
+    this.skip = 0;
+    this.ngOnInit();
+  }
 }

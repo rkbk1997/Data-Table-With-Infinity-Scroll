@@ -14,6 +14,9 @@ import { SelectComponent } from './select/select.component';
 import { InputTextComponent } from './input-text/input-text.component';
 import { EditComponent } from './edit/edit.component';
 import { DeleteComponent } from './delete/delete.component';
+import { MasterService } from './master.service';
+import { TableconfigService } from './table/tableconfig.service';
+import { ApiService } from './api.service';
 
 @NgModule({
   declarations: [
@@ -35,7 +38,7 @@ import { DeleteComponent } from './delete/delete.component';
     MatSortModule,
     FormsModule
   ],
-  providers: [],
+  providers: [MasterService,TableconfigService,ApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

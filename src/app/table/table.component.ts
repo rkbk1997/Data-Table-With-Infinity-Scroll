@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output, TemplateRef } from '@angular/core';
 import { ApiService } from '../api.service';
+import { TableconfigService } from './tableconfig.service';
 
 @Component({
   selector: 'app-table',
@@ -19,7 +20,7 @@ export class TableComponent {
   @Input() templateRef: TemplateRef<any>;
   @Input() DeletetemplateRef: TemplateRef<any>;
 
-  constructor(private api:ApiService ) {}
+  constructor(private api:ApiService, private tableService : TableconfigService ) {}
 
   editreacord:any;
 
