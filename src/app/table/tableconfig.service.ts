@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Injectable } from '@angular/core';
+import {environment} from '../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
@@ -7,10 +8,10 @@ import { Component, Injectable } from '@angular/core';
 export class TableconfigService {
 
   constructor(private http: HttpClient) {
-    this.http.get('http://localhost:8000/getCate').subscribe(res=>{
+    this.http.get(environment.url+"/getCate").subscribe(res=>{
       this.searchItemList.push({  topic: 'Category',list:res})
     })
-    this.http.get('http://localhost:8000/getGenres').subscribe(res=>{
+    this.http.get(environment.url+"/getGenres").subscribe(res=>{
       this.searchItemList.push({  topic: 'Genres',list:res})
     })
   }

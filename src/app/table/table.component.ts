@@ -11,7 +11,6 @@ export class TableComponent {
   @Input() colHeader: any;
   @Input() tableData: any;
   @Input() notEmptyPost: any;
-  @Input() notscrolly: any;
   @Input() notMorePost: any;
   @Input() showspinner: any;
   @Output() nextpost = new EventEmitter<boolean>();
