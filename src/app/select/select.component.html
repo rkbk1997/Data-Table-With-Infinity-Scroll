@@ -1,0 +1,4 @@
+<select class="form-control" (change)='findvalue($event)' value={{value}}>
+    <option value="">Search By {{searchItemList.topic}}</option>
+    <option *ngFor="let list of searchItemList.list" value="{{list}}">{{list}}</option>
+</select>

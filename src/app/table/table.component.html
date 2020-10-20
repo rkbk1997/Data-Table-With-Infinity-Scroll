@@ -1,0 +1,67 @@
+<!--Table Code Start-------------------------------------->
+<div class="search-results" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50"
+  (scrolled)="onScroll()">
+  <table class="table table-responsive text-center">
+    <thead class="thead-secondary" id="thead">
+      <th>S.No</th>
+        <th *ngFor="let colheader of colHeader">
+          {{colheader.header}}
+          <div style="display: inline-block;">
+            <span style="cursor: pointer; display: flex;flex-direction: column;font-size: 10px;" (click)="incrementsort(colheader.field)">▲</span>
+            <span style="cursor: pointer; display: flex;flex-direction: column;font-size: 10px;" (click)="decrementsort(colheader.field)">▼</span>
+          </div>
+        </th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let tdata of tableData ; let i= index">
+        <td>{{i+1}}</td>
+        <td *ngFor="let key of colHeader">{{tdata[key.field]}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<!--Table Code End-------------------------------------->
+
+<!--Spinner Code Start----------------------------------->
+<div class="spinner" *ngIf="showspinner">
+  <div class="spinner-grow text-primary" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+  <div class="spinner-grow text-secondary" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+  <div class="spinner-grow text-success" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>
+<!--Spinner Code End---------------------------------------->
+
+<!---Alert Code Start---------------------------------------->
+<div class="morepost" *ngIf="notMorePost">
+  <div class="alert alert-danger text-center mr-5 ml-5" role="alert">
+    No More Post
+  </div>
+</div>
+<!--Alert Code End------------------------------------------->
+
+<!--Edit Model Start------------------------------------------------>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        {{editreacord  | json}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--Edit Model End-------------------------------------------------------------------------------->
