@@ -11,7 +11,7 @@ export class AppComponent {
     private api: ApiService,
     private tableService: TableconfigService
   ) {}
-  
+
   @ViewChild('cate') cate;
 
   colHeader: any[] = this.tableService.colHeader;
@@ -23,25 +23,25 @@ export class AppComponent {
   notMorePost: boolean = false;
 
   showspinner: boolean = true;
-  
+
   shownextpost: boolean;
-  
+
   notEmptyPost = true;
-  
+
   notscrolly = true;
-  
+
   filter = {};
-  
+
   sort = {};
-  
+
   skip = 0;
-  
+
   filterobject = {
     Category: '',
     Genres: '',
     App: '',
   };
-  
+
   textKey = 'App';
 
   ngOnInit() {
@@ -60,7 +60,6 @@ export class AppComponent {
           this.notMorePost = true;
           this.showspinner = false;
         }
-        console.log(data);
         this.tableData = data;
         this.skip = this.skip + 10;
       });
@@ -86,11 +85,9 @@ export class AppComponent {
   }
 
   applyfilter(a) {
-    console.log('aa===', a);
     this.filter[a.key] = a.value;
     this.skip = 0;
     this.loadInitData();
-    console.log(this.filter);
     this.filterobject[a.key] = a.value;
   }
 
@@ -108,14 +105,12 @@ export class AppComponent {
   incrementsort(key: any) {
     this.sort = {};
     this.sort[key] = 'ascending';
-    console.log(this.sort);
     this.skip = 0;
     this.ngOnInit();
   }
   decrementsort(key: any) {
     this.sort = {};
     this.sort[key] = 'descending';
-    console.log(this.sort);
     this.skip = 0;
     this.ngOnInit();
   }

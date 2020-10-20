@@ -11,22 +11,11 @@
             <span style="cursor: pointer; display: flex;flex-direction: column;font-size: 10px;" (click)="decrementsort(colheader.field)">▼</span>
           </div>
         </th>
-        <!-- <th>Edit</th>
-      <th>Delete</th> -->
     </thead>
     <tbody>
       <tr *ngFor="let tdata of tableData ; let i= index">
         <td>{{i+1}}</td>
         <td *ngFor="let key of colHeader">{{tdata[key.field]}}</td>
-        <!-- <td>
-          <ng-container *ngTemplateOutlet="templateRef"></ng-container>
-        </td>
-        <td>
-          <ng-container *ngTemplateOutlet="DeletetemplateRef"></ng-container>
-        </td> -->
-        <!-- <td><a role="button" data-toggle="modal" data-target="#exampleModal">
-          <i class="fa fa-edit fa-lg" (click)="getRowData(tdata._id)" ></i></a></td>
-        <td><a><i class="fa fa-trash fa-lg"></i></a></td> -->
       </tr>
     </tbody>
   </table>

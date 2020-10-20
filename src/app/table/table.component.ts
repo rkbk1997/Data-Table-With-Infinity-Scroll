@@ -39,7 +39,6 @@ export class TableComponent {
   }
 
   getRowData(id){
-    console.log('id ===',id);
     this.api.findrecord(id).subscribe(
       res => this.editreacord = res,
     )
